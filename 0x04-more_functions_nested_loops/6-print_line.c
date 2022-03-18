@@ -1,21 +1,22 @@
 #include "main.h"
-
 /**
- * print_line - check for a digit
- * @n : number of _ to be printed
- * Return:void
- */
-
+ *print_line - function that draws a straight line in the terminal
+ *@n: is the number of times '_'  should be printed
+*/
 void print_line(int n)
 {
+	int line;
 
-	int i = 0;
-
-	while (i < n && n > 0)
+	if (n <= 0)
 	{
-		_putchar('_');
-		i++;
+		_putchar ('\n');
 	}
-	_putchar('\n');
-
+	else
+	{
+		for (line = 1; line <= n; line++)
+		{
+			_putchar ('_');
+		}
+		_putchar ('\n');
+	}
 }
