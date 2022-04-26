@@ -1,28 +1,31 @@
 #include "lists.h"
 
 /**
-   * detectLoop - detect a loop in a llinked list.
-   * @head: pointer to the head of the list
-   * Return: 1 if ther is a loop 0 otherwise.
-   **/
-
-int detectLoop(const listint_t *head)
+ * print_listint_safe - prints a linked list, safely
+ * @head: list of type listint_t to print
+ *
+ * Return: number of nodes in the list
+ */
+size_t print_listint_safe(const listint_t *head)
 {
-	const listint_t *slow, *fast;
+	size_t num = 0;
+	long int diff;
 
-	slow = head;
-	fast = head;
-
-	while (fast != NULL && fast->next != NULL)
+	while (head)
 	{
-		slow = slow->next;
-		fast = fast->next->next;
-		if (slow == fast)
+		diff = head - head->next;
+		num++;
+		printf("[%p] %d\n", (void *)head, head->n);
+		if (diff > 0)
+			head = head->next;
+		else
 		{
-			return (1);
+			printf("-> [%p] %d\n", (void *)head->next, head->next->n);
+			break;
 		}
 	}
-	return (0);
+
+	return (num);
 }
 
 /**
